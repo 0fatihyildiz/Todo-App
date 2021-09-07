@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css">
+    
+</head>
+<body>
+    <div class="title">Todo App</div>
+    <div class="taskinp">
+        <form>
+            <input id="added" type="text" autocomplete="off" placeholder="Add Task">
+            <button id="addedbtn">Add</button>
+        </form>
+        <span>You can add up to 5 tasks</span>
+    </div>
+    <div class="row flex-spaces tabs">
+        <input class="tab1" id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1" >Ongoing Tasks <span class="badge" id="continuing">0</span></label>
+      
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2">Completed Task <span class="badge secondary" id="completed">0</span></label>
+        <div class="content" id="content1" style="height: 500px;">   
+            <div class="tasklist">
+            </div>            
+            <div class="found border">
+                <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_16MhZz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                No Tasks Added Yet
+            </div>
+
+            
+        </div>
+        <div class="content" id="content2" style="height: 500px;">
+            <div class="completedlist">
+            </div>
+            <div class="action">
+                <button id="deleteAll" class="btn-danger faded-out">Delete All</button>
+            </div>
+            <div class="cfound border">
+                <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_sRrMSs.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+                No Completed Tasks Added Yet
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

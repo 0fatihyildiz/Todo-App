@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+*{
+    font-family: 'Indie Flower', cursive;
+}
+
+html,body{
+    height: 100%;
+}
+
+.dark body{
+    background-color: #1a1a1a;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:15px;
+}
+
+.title{
+    font-size: 50px;
+}
+.taskinp{
+    max-width: 500px;
+    width: 100%;
+}
+.taskinp form{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.taskinp span{
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+.taskinp input{
+    width: 100%;
+}
+
+.tasklist{
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tasklist div{
+    width: 100%;
+    font-family: 'Neucha', cursive;
+    display: flex;
+    justify-content: space-between;
+}
+.tasklist div span{
+    display: flex;
+    gap: 5px;
+}
+.tasklist div a{
+    background: none;
+}
+
+.completedlist{
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.completedlist div{
+    width: 100%;
+    font-family: 'Neucha', cursive;
+    display: flex;
+    justify-content: space-between;
+}
+.completedlist div span{
+    display: flex;
+    gap: 5px;
+}
+.completedlist div a{
+    background: none;
+}
+
+.task {
+    transition: all .5s;
+    height:70px;
+    transform: scale(1, 1) !important;
+  }
+  
+  div.faded-out {
+    opacity: 0;
+    height:0px !important;
+    font-size: 0px;
+    padding: 0px;
+    border: 0px;
+    margin:0px;
+    transform: scale(0, 0) !important;
+  }
+
+  button.faded-out {
+    opacity: 0;
+    height:0px !important;
+    font-size: 0px;
+    padding: 0px;
+    border: 0px;
+    margin:0px;
+    transform: scale(0, 0) !important;
+  }
+  
+input[type="radio"]:checked+label .badge{
+      opacity: 1 !important;
+  }
+input[type="radio"]+label .badge{
+      opacity: .5;
+  }
+
+input[type="radio"]+label:hover .badge{
+      opacity: .7;
+}
+
+.action{
+    display: flex;
+    gap: 5px;
+    justify-content: end;
+}
+
+.action button{
+    margin-top: 10px;
+}
+
+.tabs{
+    width: 100%; max-width: 500px;
+}
+
+.found{
+    transition: all .5s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    padding: 10px 0px;
+}
+
+.cfound{
+    transition: all .5s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    padding: 10px 0px;
+}
+
+#deleteAll{
+    transition: all .5s;
+}
