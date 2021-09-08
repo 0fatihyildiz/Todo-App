@@ -86,7 +86,13 @@ body{
     gap: 5px;
 }
 .completedlist div a{
+    text-decoration: none !important;
     background: none;
+}
+
+.completedlist .sp{
+    text-decoration: line-through;
+    font-weight: 500;
 }
 
 .task {
@@ -164,4 +170,19 @@ input[type="radio"]+label:hover .badge{
 
 #deleteAll{
     transition: all .5s;
+}
+
+.panel{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 30px;
+}
+
+#darkmode{
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
 }
