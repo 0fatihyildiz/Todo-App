@@ -8,6 +8,10 @@ html,body{
     height: 100%;
 }
 
+.dark button{
+    background-color: #212121;
+}
+
 .dark body{
     background-color: #1a1a1a;
 }
@@ -185,4 +189,10 @@ input[type="radio"]+label:hover .badge{
     background: none;
     cursor: pointer;
     padding: 5px;
+}
+
+.alert{
+    max-width: 500px;
+    width: 100%;
+    transition: all .5s;
 }

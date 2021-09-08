@@ -8,6 +8,7 @@ const completed = document.querySelector('#completed');
 const deleteAll = document.querySelector('#deleteAll');
 const completedAllb = document.querySelector('#completedAll');
 const darkmode = document.querySelector('#darkmode');
+
 eventListeners();
 
 function eventListeners() {
@@ -147,6 +148,19 @@ function deleteTask(e) {
     e.preventDefault();
     return true;
 }
+
+
+function alert(a){
+    const alert = document.querySelector('.alert');
+    alert.innerHTML = `${a}`;
+    alert.classList.remove('faded-out');
+    addedbtn.disabled = true;
+    setTimeout(() => {
+        alert.classList.add('faded-out');
+        addedbtn.disabled = false;
+    }, 5000);
+}
+
 
 function deletecTask(e) {
     if(e.target.id === 'deletebtn') {
