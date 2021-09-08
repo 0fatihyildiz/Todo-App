@@ -42,7 +42,7 @@ function eventListeners() {
         if(document.querySelector('html').classList.contains('dark')){
             darkmode.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px" y="0px" width="30px" height="auto" viewBox="0 0 471.78 471.78"
+                x="0px" y="0px" width="30px" viewBox="0 0 471.78 471.78"
                 style="enable-background:new 0 0 471.78 471.78;" xml:space="preserve">
                         <path d="M121.272,21.354c-16.676,5.345-13.114,28.421,0.427,31.438c1.805,2.58,4.479,4.712,8.145,5.979
 			c85.163,29.467,143.153,104.352,115.514,195.888C217.16,348.059,115.531,383.655,26.974,366.309
@@ -57,7 +57,7 @@ function eventListeners() {
         }else{
             darkmode.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" fill="#f9be06" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            width="30px" height="auto" viewBox="0 0 481.378 481.378" style="enable-background:new 0 0 481.378 481.378;"
+            width="30px" viewBox="0 0 481.378 481.378" style="enable-background:new 0 0 481.378 481.378;"
             xml:space="preserve">
        
                <path d="M385.464,228.53c-16.072-92.163-108.923-135.712-194.218-112.427c-6.865,1.871-10.049,7.051-10.379,12.51
