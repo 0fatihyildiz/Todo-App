@@ -16,12 +16,17 @@ html,body{
     background-color: #1a1a1a;
 }
 
+a{
+    color: #212121;
+}
+
 body{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap:15px;
+    padding: 0px 20px;
 }
 
 .title{
@@ -69,6 +74,10 @@ body{
 }
 .tasklist div a{
     background: none;
+}
+
+.disable .task span a:first-child{
+    display: none;
 }
 
 .completedlist{
@@ -195,4 +204,40 @@ input[type="radio"]+label:hover .badge{
     max-width: 500px;
     width: 100%;
     transition: all .5s;
+}
+
+.credit{
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    margin: 20px 0px;
+    font-weight: 600;
+}
+
+.credit span span{
+    opacity: 0.5;
+    margin-right: 5px;
+}
+
+.credit span a{
+    background: none;
+    opacity: 0.5;
+    transition: opacity .5s;
+}
+
+.credit span a:hover{
+    opacity: 1;
+}
+
+.credit a{
+    background: none;
+    opacity: .7;
+}
+
+.credit a:hover{
+    opacity: 1;
 }

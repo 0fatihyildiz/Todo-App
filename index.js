@@ -29,7 +29,7 @@ function eventListeners() {
                 setTimeout(() => {
                     completedlist.children[0].remove();
                     foundcTask();
-                } , 600);
+                }, 600);
                 completecount(i + 1);
             }
         }
@@ -40,7 +40,7 @@ function eventListeners() {
     //dark mode
     darkmode.addEventListener('click', () => {
         document.querySelector('html').classList.toggle('dark');
-        if(document.querySelector('html').classList.contains('dark')){
+        if (document.querySelector('html').classList.contains('dark')) {
             darkmode.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" xmlns:xlink="http://www.w3.org/1999/xlink"
                 x="0px" y="0px" width="30px" viewBox="0 0 471.78 471.78"
@@ -55,7 +55,7 @@ function eventListeners() {
 			C454.2,179.586,443.693,251.236,408.959,308.72z" />
             </svg>
             `;
-        }else{
+        } else {
             darkmode.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" fill="#f9be06" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             width="30px" viewBox="0 0 481.378 481.378" style="enable-background:new 0 0 481.378 481.378;"
@@ -87,7 +87,7 @@ function eventListeners() {
     });
 }
 
-function addTask(e){
+function addTask(e) {
     if (tastklist.childElementCount <= 4) {
         if (added.value.length < 4) {
             alert('Please enter a valid task');
@@ -108,7 +108,7 @@ function addTask(e){
             deletebtn.id = 'deletebtn';
             deletebtn.innerHTML = 'X';
             requestAnimationFrame(() => {
-             div.classList.remove("faded-out")
+                div.classList.remove("faded-out")
             });
 
             div.innerHTML = added.value;
@@ -123,21 +123,23 @@ function addTask(e){
     } else {
         alert('You have reached the limit of tasks');
         added.value = '';
-    }  
+    }
     e.preventDefault();
 }
 
 function countTask(a = 0) {
     continuing.innerHTML = tastklist.childElementCount - a;
+    disablecontrol();
     foundTask();
 }
 
-function completecount(a = 0){
+function completecount(a = 0) {
     completed.innerHTML = completedlist.childElementCount - a;
+    disablecontrol();
 }
 
 function deleteTask(e) {
-    if(e.target.id === 'deletebtn') {
+    if (e.target.id === 'deletebtn') {
         e.target.parentElement.parentElement.classList.add('faded-out');
         setInterval(() => {
             e.target.parentElement.parentElement.remove();
@@ -150,20 +152,38 @@ function deleteTask(e) {
 }
 
 
-function alert(a){
+function alert(a) {
     const alert = document.querySelector('.alert');
-    alert.innerHTML = `${a}`;
+    alert.innerHTML = a;
     alert.classList.remove('faded-out');
     addedbtn.disabled = true;
+    completedAllb.disabled = true;
+    completebtn.disabled = true;
     setTimeout(() => {
         alert.classList.add('faded-out');
-        addedbtn.disabled = false;
+        disablecontrol();
     }, 5000);
 }
 
+function disablecontrol(){
+    if (tastklist.childElementCount < 5) {
+        addedbtn.disabled = false;
+    }else{
+        addedbtn.disabled = true;
+    }
+    if (completedlist.childElementCount + tastklist.childElementCount < 6) {
+        completedAllb.disabled = false;
+    } else {
+        completedAllb.disabled = true;
+    }if(completedlist.childElementCount < 5){
+        tastklist.classList.remove('disable');
+    }else{
+        tastklist.classList.add('disable');
+    }
+}
 
 function deletecTask(e) {
-    if(e.target.id === 'deletebtn') {
+    if (e.target.id === 'deletebtn') {
         e.target.parentElement.classList.add('faded-out');
         setInterval(() => {
             e.target.parentElement.remove();
@@ -177,67 +197,72 @@ function deletecTask(e) {
 
 function foundTask() {
     var found = document.querySelector('.found');
-    if(tastklist.childElementCount > 0) {
+    if (tastklist.childElementCount > 0) {
         found.classList.add('faded-out');
         completedAllb.classList.remove('faded-out');
-    }else{
-        found.classList.remove('faded-out'); 
+    } else {
+        found.classList.remove('faded-out');
         completedAllb.classList.add('faded-out');
     }
 }
 
 function foundcTask() {
     var cfound = document.querySelector('.cfound');
-    if(completedlist.childElementCount > 0) {
+    if (completedlist.childElementCount > 0) {
         deleteAll.classList.remove('faded-out');
         cfound.classList.add('faded-out');
-    }else{
+    } else {
         deleteAll.classList.add('faded-out');
-        cfound.classList.remove('faded-out'); 
+        cfound.classList.remove('faded-out');
     }
 }
 
 function completeTask(e) {
-    if(e.target.id === 'completebtn') {
-        e.target.parentElement.parentElement.classList.add('faded-out');
-        const div = document.createElement('div');
-        const deletebtn = document.createElement('a');
-        const span = document.createElement('div');
-        div.id = 'task';
-        div.setAttribute('class', 'col border border-primary');
-        div.classList.add("task", "faded-out")
-        span.classList.add('sp');
-        deletebtn.href = '#';
-        deletebtn.id = 'deletebtn';
-        deletebtn.innerHTML = 'X';
-        
+    if (e.target.id === 'completebtn') {
+        if (completedlist.childElementCount < 5) {
+            e.target.parentElement.parentElement.classList.add('faded-out');
+            const div = document.createElement('div');
+            const deletebtn = document.createElement('a');
+            const span = document.createElement('div');
+            div.id = 'task';
+            div.setAttribute('class', 'col border border-primary');
+            div.classList.add("task", "faded-out")
+            span.classList.add('sp');
+            deletebtn.href = '#';
+            deletebtn.id = 'deletebtn';
+            deletebtn.innerHTML = 'X';
 
-        requestAnimationFrame(() => {
-         div.classList.remove("faded-out")
-        });
 
-        span.innerHTML = e.target.parentElement.parentElement.textContent.slice(0, -2);
-        div.appendChild(span);
-        div.appendChild(deletebtn);
-        completedlist.appendChild(div);
+            requestAnimationFrame(() => {
+                div.classList.remove("faded-out")
+            });
 
-        // remove from task
-        e.target.parentElement.parentElement.classList.add('faded-out');
-        
-        setInterval(() => {
-            e.target.parentElement.parentElement.remove();
-            countTask();
-            completecount();
-            foundTask();
-        }, 600);
-        foundcTask();
+            span.innerHTML = e.target.parentElement.parentElement.textContent.slice(0, -2);
+            div.appendChild(span);
+            div.appendChild(deletebtn);
+            completedlist.appendChild(div);
+
+            // remove from task
+            e.target.parentElement.parentElement.classList.add('faded-out');
+
+            setInterval(() => {
+                e.target.parentElement.parentElement.remove();
+                countTask();
+                completecount();
+                foundTask();
+            }, 600);
+            foundcTask();
+        } else {
+            alert('You have reached the limit of tasks');
+            
+        }
     }
     e.preventDefault();
 }
 
 // Completed All items 
 function completedAll() {
-    if(tastklist.childElementCount > 0) {
+    if (tastklist.childElementCount > 0 && completedlist.childElementCount + tastklist.childElementCount < 6) {
         for (let i = 0; i < tastklist.childElementCount; i++) {
             tastklist.children[i].classList.add('faded-out');
             const div = document.createElement('div');
@@ -251,9 +276,9 @@ function completedAll() {
             deletebtn.id = 'deletebtn';
             deletebtn.innerHTML = 'X';
             requestAnimationFrame(() => {
-             div.classList.remove("faded-out")
+                div.classList.remove("faded-out")
             });
-    
+
             span.innerHTML = tastklist.children[i].textContent.slice(0, -2);
             div.appendChild(span);
             div.appendChild(deletebtn);
@@ -266,8 +291,9 @@ function completedAll() {
             completecount(0);
             foundcTask();
         }
+    } else {
+        alert('No tasks to complete');
     }
 }
-
 
 foundTask();
