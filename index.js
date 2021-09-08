@@ -202,7 +202,7 @@ function completeTask(e) {
          div.classList.remove("faded-out")
         });
 
-        div.innerHTML = e.target.parentElement.parentElement.textContent.slice(0, -2);
+        span.innerHTML = e.target.parentElement.parentElement.textContent.slice(0, -2);
         div.appendChild(span);
         div.appendChild(deletebtn);
         completedlist.appendChild(div);
