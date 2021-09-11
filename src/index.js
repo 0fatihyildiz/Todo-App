@@ -8,6 +8,7 @@ const completed = document.querySelector('#completed');
 const deleteAll = document.querySelector('#deleteAll');
 const completedAllb = document.querySelector('#completedAll');
 const darkmode = document.querySelector('#darkmode');
+const alerti = document.querySelector('.alert-warning');
 
 eventListeners();
 
@@ -28,6 +29,7 @@ function eventListeners() {
                 completedlist.children[i].classList.add('faded-out');
                 setTimeout(() => {
                     completedlist.children[0].remove();
+                    disablecontrol();
                     foundcTask();
                 }, 600);
                 completecount(i + 1);
@@ -35,6 +37,17 @@ function eventListeners() {
         }
     });
 
+    added.addEventListener('keyup', addedfc);
+    function addedfc() {
+        if(added.value.length < 4){
+            addedbtn.disabled = true;
+        }else{
+            if (tastklist.childElementCount < 5) {
+                addedbtn.disabled = false;
+            }
+        }
+    }
+    addedfc();
     // completed all
     completedAllb.addEventListener('click', completedAll);
     //dark mode
@@ -60,7 +73,6 @@ function eventListeners() {
             <svg xmlns="http://www.w3.org/2000/svg" fill="#f9be06" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             width="30px" viewBox="0 0 481.378 481.378" style="enable-background:new 0 0 481.378 481.378;"
             xml:space="preserve">
-       
                <path d="M385.464,228.53c-16.072-92.163-108.923-135.712-194.218-112.427c-6.865,1.871-10.049,7.051-10.379,12.51
                    c-52.537,28.812-82.4,88.857-72.224,150.523c12.812,77.633,96.807,115.601,167.406,98.559
                    C340.722,362.075,397.484,297.479,385.464,228.53z M274.088,347.685c-57.091,19.068-118.712-11.725-135.638-69.857
@@ -151,9 +163,8 @@ function deleteTask(e) {
     return true;
 }
 
-
 function alert(a) {
-    const alert = document.querySelector('.alert');
+    const alert = document.querySelector('.alert-danger');
     alert.innerHTML = a;
     alert.classList.remove('faded-out');
     addedbtn.disabled = true;
@@ -165,15 +176,23 @@ function alert(a) {
     }, 5000);
 }
 
+function info(a){
+    alerti.innerHTML = a;
+    alerti.classList.remove('faded-out');
+}
+
 function disablecontrol(){
     if (tastklist.childElementCount < 5) {
+        alerti.classList.add('faded-out');
         addedbtn.disabled = false;
     }else{
         addedbtn.disabled = true;
+        info('you have to delete a few quests to add new quests');
     }
     if (completedlist.childElementCount + tastklist.childElementCount < 6) {
         completedAllb.disabled = false;
     } else {
+        info('to add new quests you have to delete some of the completed quests');
         completedAllb.disabled = true;
     }if(completedlist.childElementCount < 5){
         tastklist.classList.remove('disable');
@@ -254,7 +273,6 @@ function completeTask(e) {
             foundcTask();
         } else {
             alert('You have reached the limit of tasks');
-            
         }
     }
     e.preventDefault();
