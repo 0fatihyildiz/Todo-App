@@ -51,8 +51,6 @@ body{
 .taskinp{
     max-width: 500px;
     width: 100%;
-    position: sticky;
-    top: 0;
 }
 .taskinp form{
     width: 100%;

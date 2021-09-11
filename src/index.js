@@ -8,7 +8,8 @@ const completed = document.querySelector('#completed');
 const deleteAll = document.querySelector('#deleteAll');
 const completedAllb = document.querySelector('#completedAll');
 const darkmode = document.querySelector('#darkmode');
-const alerti = document.querySelector('.alert-warning');
+const alertw = document.querySelector('.alert-warning');
+const alerti = document.querySelector('.alert-secondary');
 
 eventListeners();
 
@@ -21,7 +22,6 @@ function eventListeners() {
     completedlist.addEventListener('click', deletecTask);
     //complete task
     tastklist.addEventListener('click', completeTask);
-
     // delete all tasks
     deleteAll.addEventListener('click', () => {
         if (completedlist.childElementCount > 0) {
@@ -147,7 +147,6 @@ function countTask(a = 0) {
 
 function completecount(a = 0) {
     completed.innerHTML = completedlist.childElementCount - a;
-    disablecontrol();
 }
 
 function deleteTask(e) {
@@ -176,6 +175,11 @@ function alert(a) {
     }, 5000);
 }
 
+function warn(a){
+    alertw.innerHTML = a;
+    alertw.classList.remove('faded-out');
+}
+
 function info(a){
     alerti.innerHTML = a;
     alerti.classList.remove('faded-out');
@@ -183,16 +187,20 @@ function info(a){
 
 function disablecontrol(){
     if (tastklist.childElementCount < 5) {
-        alerti.classList.add('faded-out');
+        alertw.classList.add('faded-out');
         addedbtn.disabled = false;
     }else{
         addedbtn.disabled = true;
-        info('you have to delete a few quests to add new quests');
+        warn('you have to delete a few quests to add new quests');
     }
     if (completedlist.childElementCount + tastklist.childElementCount < 6) {
+        if(completedlist.childElementCount < 5)
+            alerti.classList.add('faded-out');
         completedAllb.disabled = false;
     } else {
-        info('to add new quests you have to delete some of the completed quests');
+        if(completedlist.childElementCount >= 5)
+            info('To be able to add new completed missions, you must delete the old ones!');
+
         completedAllb.disabled = true;
     }if(completedlist.childElementCount < 5){
         tastklist.classList.remove('disable');
