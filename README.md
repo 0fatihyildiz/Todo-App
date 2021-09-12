@@ -15,6 +15,6 @@ a simple todo app
 - [HTML](https://www.w3schools.com/html/html5_intro.asp)
 - [CSS](https://www.w3schools.com/css/css_intro.asp)
 - [JavaScript](https://www.w3schools.com/js/js_intro.asp)
-- [Paper.css](https://papercss.io/)
+- [Paper.css](https://www.getpapercss.com/)
 
 <img src="./src/todo.gif"></img>
