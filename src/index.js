@@ -25,23 +25,32 @@ function eventListeners() {
     // delete all tasks
     deleteAll.addEventListener('click', () => {
         if (completedlist.childElementCount > 0) {
-            for (let i = 0; i < completedlist.childElementCount; i++) {
-                completedlist.children[i].classList.add('faded-out');
-                setTimeout(() => {
-                    completedlist.children[0].remove();
-                    disablecontrol();
-                    foundcTask();
+            document.getElementById('modal-1').checked = true;
+            let btn = document.getElementById('modalbtn');
+            btn.innerHTML = 'Delete All';
+            btn.addEventListener('click', () => {
+                document.getElementById('modal-1').checked = false;
+                setInterval(() => {
+                    btn.innerHTML = 'Delete Task';
                 }, 600);
-                completecount(i + 1);
-            }
+                for (let i = 0; i < completedlist.childElementCount; i++) {
+                    completedlist.children[i].classList.add('faded-out');
+                    setTimeout(() => {
+                        completedlist.children[0].remove();
+                        foundcTask();
+                    }, 600);
+                    completecount(i + 1);
+                }
+            });
+            disablecontrol();
         }
     });
 
     added.addEventListener('keyup', addedfc);
     function addedfc() {
-        if(added.value.length < 4){
+        if (added.value.length < 4) {
             addedbtn.disabled = true;
-        }else{
+        } else {
             if (tastklist.childElementCount < 5) {
                 addedbtn.disabled = false;
             }
@@ -105,19 +114,20 @@ function addTask(e) {
             alert('Please enter a valid task');
         } else {
             const div = document.createElement('div');
-            const deletebtn = document.createElement('a');
-            const completebtn = document.createElement('a');
+            const deletebtn = document.createElement('button');
+            const completebtn = document.createElement('button');
             const span = document.createElement('span');
             div.id = 'task';
             div.setAttribute('class', 'col border border-primary');
             div.classList.add("task", "faded-out")
 
             completebtn.id = 'completebtn';
-            completebtn.href = '#';
+            completebtn.setAttribute('class', 'btn btn-success');
             completebtn.innerHTML = '&#10003;';
 
             deletebtn.href = '#';
             deletebtn.id = 'deletebtn';
+            deletebtn.setAttribute('class', 'btn btn-danger');
             deletebtn.innerHTML = 'X';
             requestAnimationFrame(() => {
                 div.classList.remove("faded-out")
@@ -129,6 +139,7 @@ function addTask(e) {
             div.appendChild(span);
             tastklist.appendChild(div);
             added.value = '';
+            document.getElementById('tab1').checked = true;
             countTask();
             foundTask();
         }
@@ -149,19 +160,6 @@ function completecount(a = 0) {
     completed.innerHTML = completedlist.childElementCount - a;
 }
 
-function deleteTask(e) {
-    if (e.target.id === 'deletebtn') {
-        e.target.parentElement.parentElement.classList.add('faded-out');
-        setInterval(() => {
-            e.target.parentElement.parentElement.remove();
-            countTask();
-            foundTask();
-        }, 600);
-    }
-    e.preventDefault();
-    return true;
-}
-
 function alert(a) {
     const alert = document.querySelector('.alert-danger');
     alert.innerHTML = a;
@@ -175,48 +173,71 @@ function alert(a) {
     }, 5000);
 }
 
-function warn(a){
+function warn(a) {
     alertw.innerHTML = a;
     alertw.classList.remove('faded-out');
 }
 
-function info(a){
+function info(a) {
     alerti.innerHTML = a;
     alerti.classList.remove('faded-out');
 }
 
-function disablecontrol(){
+function disablecontrol() {
     if (tastklist.childElementCount < 5) {
         alertw.classList.add('faded-out');
         addedbtn.disabled = false;
-    }else{
+    } else {
         addedbtn.disabled = true;
-        warn('you have to delete a few quests to add new quests');
+        warn('to add new quests you need to delete or complete a few quests');
     }
     if (completedlist.childElementCount + tastklist.childElementCount < 6) {
-        if(completedlist.childElementCount < 5)
+        if (completedlist.childElementCount < 5)
             alerti.classList.add('faded-out');
         completedAllb.disabled = false;
     } else {
-        if(completedlist.childElementCount >= 5)
+        if (completedlist.childElementCount >= 5)
             info('To be able to add new completed missions, you must delete the old ones!');
 
         completedAllb.disabled = true;
-    }if(completedlist.childElementCount < 5){
+    } if (completedlist.childElementCount < 5) {
         tastklist.classList.remove('disable');
-    }else{
+    } else {
         tastklist.classList.add('disable');
     }
 }
 
+function deleteTask(e) {
+    if (e.target.id === 'deletebtn') {
+        document.getElementById('modal-1').checked = true;
+        let btn = document.getElementById('modalbtn');
+        btn.addEventListener('click', () => {
+            e.target.parentElement.parentElement.classList.add('faded-out');
+            document.getElementById('modal-1').checked = false;
+            setInterval(() => {
+                e.target.parentElement.parentElement.remove();
+                countTask();
+                foundTask();
+            }, 600);
+        });
+    }
+    e.preventDefault();
+    return true;
+}
+
 function deletecTask(e) {
     if (e.target.id === 'deletebtn') {
-        e.target.parentElement.classList.add('faded-out');
-        setInterval(() => {
-            e.target.parentElement.remove();
-            completecount();
-            foundcTask()
-        }, 600);
+        document.getElementById('modal-1').checked = true;
+        let btn = document.getElementById('modalbtn');
+        btn.addEventListener('click', () => {
+            e.target.parentElement.classList.add('faded-out');
+            document.getElementById('modal-1').checked = false;
+            setInterval(() => {
+                e.target.parentElement.remove();
+                completecount();
+                foundcTask()
+            }, 600);
+        });
     }
     e.preventDefault();
     return true;
@@ -249,13 +270,13 @@ function completeTask(e) {
         if (completedlist.childElementCount < 5) {
             e.target.parentElement.parentElement.classList.add('faded-out');
             const div = document.createElement('div');
-            const deletebtn = document.createElement('a');
+            const deletebtn = document.createElement('button');
             const span = document.createElement('div');
             div.id = 'task';
             div.setAttribute('class', 'col border border-primary');
             div.classList.add("task", "faded-out")
             span.classList.add('sp');
-            deletebtn.href = '#';
+            deletebtn.setAttribute('class', 'btn btn-danger');
             deletebtn.id = 'deletebtn';
             deletebtn.innerHTML = 'X';
 
@@ -292,13 +313,13 @@ function completedAll() {
         for (let i = 0; i < tastklist.childElementCount; i++) {
             tastklist.children[i].classList.add('faded-out');
             const div = document.createElement('div');
-            const deletebtn = document.createElement('a');
+            const deletebtn = document.createElement('button');
             const span = document.createElement('div');
             div.id = 'task';
             div.setAttribute('class', 'col border border-primary');
             div.classList.add("task", "faded-out")
             span.classList.add('sp');
-            deletebtn.href = '#';
+            deletebtn.setAttribute('class', 'btn btn-danger');
             deletebtn.id = 'deletebtn';
             deletebtn.innerHTML = 'X';
             requestAnimationFrame(() => {
@@ -316,6 +337,7 @@ function completedAll() {
             }, 600);
             completecount(0);
             foundcTask();
+            document.getElementById('tab2').checked = true;
         }
     } else {
         alert('No tasks to complete');

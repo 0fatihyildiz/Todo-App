@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
-*{
-    font-family: 'Indie Flower', cursive;
-}
+
+
 
 
 /* custom scrollbar */
@@ -33,8 +32,8 @@ html,body{
     background-color: #1a1a1a;
 }
 
-a{
-    color: #212121;
+.dark .modal-body{
+    background-color: #1a1a1a !important;
 }
 
 body{
@@ -46,6 +45,7 @@ body{
 }
 
 .title{
+    font-family: 'Indie Flower', cursive;
     font-size: 50px;
 }
 .taskinp{
@@ -56,6 +56,7 @@ body{
     width: 100%;
     display: flex;
     gap: 10px;
+    margin-block-end: 0em;
 }
 
 .taskinp span{
@@ -86,13 +87,23 @@ body{
 }
 .tasklist div span{
     display: flex;
-    gap: 5px;
+    gap: 15px;
+}
+
+.tasklist div span button{
+    padding: 12px;
+    font-size: 15px;
+}
+
+.completedlist button{
+    padding: 12px;
+    font-size: 15px;
 }
 .tasklist div a{
     background: none;
 }
 
-.disable .task span a:first-child{
+.disable .task span button:first-child{
     display: none;
 }
 
@@ -176,6 +187,7 @@ input[type="radio"]+label:hover .badge{
 }
 
 .found{
+    font-family: 'Indie Flower', cursive;
     transition: all .5s;
     display: flex;
     flex-direction: column;
@@ -187,6 +199,7 @@ input[type="radio"]+label:hover .badge{
 }
 
 .cfound{
+    font-family: 'Indie Flower', cursive;
     transition: all .5s;
     display: flex;
     flex-direction: column;
@@ -212,10 +225,8 @@ input[type="radio"]+label:hover .badge{
 
 #darkmode{
     outline: none;
-    border: none;
     background: none;
     cursor: pointer;
-    padding: 5px;
 }
 
 .alert{
@@ -231,6 +242,7 @@ input[type="radio"]+label:hover .badge{
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
+    font-family: 'Indie Flower', cursive;
 }
 
 .credit span span{
