@@ -11,6 +11,18 @@ const darkmode = document.querySelector('#darkmode');
 const alertw = document.querySelector('.alert-warning');
 const alerti = document.querySelector('.alert-secondary');
 
+
+// function setAddButtonState(state){
+//     if(state == 'true'){
+//         addedbtn.disabled = false;
+//     }else {
+//         addedbtn.disabled = true;
+//     }
+// }
+
+// setAddButtonState(false)
+
+
 eventListeners();
 
 function eventListeners() {
@@ -57,7 +69,7 @@ function eventListeners() {
         }
     }
     addedfc();
-    // completed all
+    //completed all
     completedAllb.addEventListener('click', completedAll);
     //dark mode
     darkmode.addEventListener('click', () => {
@@ -142,6 +154,7 @@ function addTask(e) {
             document.getElementById('tab1').checked = true;
             countTask();
             foundTask();
+            changeStateAddButton()
         }
     } else {
         alert('You have reached the limit of tasks');
@@ -149,6 +162,13 @@ function addTask(e) {
     }
     e.preventDefault();
 }
+
+function changeStateAddButton(){
+    if(added.value ==''){
+        addedbtn.disabled = true;
+    }
+}
+
 
 function countTask(a = 0) {
     continuing.innerHTML = tastklist.childElementCount - a;
@@ -343,5 +363,6 @@ function completedAll() {
         alert('No tasks to complete');
     }
 }
+
 
 foundTask();
